@@ -1,3 +1,5 @@
+Devam Ediyor...
+
 # Proje Kurulum Kılavuzu
 
 Bu doküman, projeyi çalıştırmak için gerekli adımları içermektedir.
