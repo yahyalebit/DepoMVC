@@ -1,0 +1,33 @@
+﻿@model Entity.Concrete.Employee
+
+@{
+    ViewBag.Title = "Çalışanı Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-danger mb-4">Çalışanı Sil</h2>
+
+<div class="card shadow-lg p-4 border border-danger">
+    <div class="card-body">
+        <h4 class="text-center text-danger">Bu çalışanı silmek istediğinize emin misiniz?</h4>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4 fw-bold">Ad:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.EmployeeFirstName)</dd>
+
+            <dt class="col-sm-4 fw-bold">Soyad:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.EmployeeLastName)</dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-danger px-4">Evet, Sil</button>
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary px-4">Geri Dön</a>
+            </div>
+        }
+    </div>
+</div>

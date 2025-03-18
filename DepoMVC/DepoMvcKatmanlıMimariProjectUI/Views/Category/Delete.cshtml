@@ -1,0 +1,56 @@
+﻿@model Entity.Concrete.Category
+
+@{
+    ViewBag.Title = "Kategoriyi Sil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-danger mb-4">Kategoriyi Sil</h2>
+
+<div class="card shadow-lg p-4 border border-danger">
+    <div class="card-body">
+        <h4 class="text-center text-danger">Bu kategoriyi silmek istediğinize emin misiniz?</h4>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4 fw-bold">Kategori Adı:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CategoryName)</dd>
+
+            <dt class="col-sm-4 fw-bold">Açıklama:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CategoryDescription)</dd>
+
+            <dt class="col-sm-4 fw-bold">Durum:</dt>
+            <dd class="col-sm-8">
+                @if (Model.CategoryStatus)
+                {
+                    <span class="badge bg-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Pasif</span>
+                }
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-check text-center mt-3">
+                <input class="form-check-input" type="checkbox" id="confirmDelete" required>
+                <label class="form-check-label fw-bold text-danger" for="confirmDelete">
+                    Silme işlemini onaylıyorum
+                </label>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-danger px-4">Evet, Sil</button>
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary px-4">Geri Dön</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

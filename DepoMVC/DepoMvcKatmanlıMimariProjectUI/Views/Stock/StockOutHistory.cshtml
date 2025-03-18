@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DepoMvcKatmanlıMimariProjectUI.Models.StockOutHistoryViewModel>
+
+@{
+    ViewBag.Title = "Stok Çıkarma Geçmişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-danger mb-4">📦 Stok Çıkarma Geçmişi</h2>
+
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover shadow-sm text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Müşteri</th>
+                        <th>Stok Çıkartan Personel</th>
+                        <th>Çıkartılan Miktar</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@item.ProductName</td>
+                            <td>@item.CustomerName</td>
+                            <td>@item.EmployeeName</td>
+                            <td><span class="badge bg-danger fs-6">@item.Quantity</span></td>
+                            <td>@item.DateOut.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

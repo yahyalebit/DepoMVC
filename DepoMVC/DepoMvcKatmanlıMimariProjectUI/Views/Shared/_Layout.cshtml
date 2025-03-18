@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - DEPO</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <style>
+        /* Sayfa Yapısı */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        /* Navbar Standart Font ve Hover */
+        .navbar-nav .nav-link {
+            font-size: 16px;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #f8f9fa !important;
+            }
+
+        /* Açılır Menü Stili */
+        .menu-container {
+            display: none;
+            position: absolute;
+            background-color: #343a40;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 5px;
+            padding: 10px;
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .menu-item {
+            display: block;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+        }
+
+            .menu-item:hover {
+                background-color: #495057;
+                border-radius: 5px;
+            }
+
+        /* Footer Sabitleme */
+        .fixed-footer {
+            width: 100%;
+            background: #222;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            @Html.ActionLink("DEPO", "Index", "Product", new { area = "" }, new { @class = "navbar-brand fw-bold text-uppercase" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">@Html.ActionLink("Ürünler", "Index", "Product", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Kategoriler", "Index", "Category", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Müşteriler", "Index", "Customer", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Çalışanlar", "Index", "Employee", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    <!-- Stok İşlemleri (Açılır Menü) -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white fw-normal" onclick="toggleMenu('stokMenu')">
+                            Stok İşlemleri <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div id="stokMenu" class="menu-container">
+                            <a href="@Url.Action("AddStock", "Stock")" class="menu-item">Stok Ekle</a>
+                            <a href="@Url.Action("StockOut", "Stock")" class="menu-item">Stok Çıkar</a>
+                        </div>
+                    </li>
+
+                    <!-- Stok Geçmişi (Açılır Menü) -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white fw-normal" onclick="toggleMenu('stokGecmisMenu')">
+                            Stok Geçmişi <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div id="stokGecmisMenu" class="menu-container">
+                            <a href="@Url.Action("StockHistory", "Stock")" class="menu-item">Stok Ekleme Geçmişi</a>
+                            <a href="@Url.Action("StockOutHistory", "Stock")" class="menu-item">Stok Çıkarma Geçmişi</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- İçerik -->
+    <div class="container content">
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <footer class="fixed-footer">
+        <div class="container">
+            <p class="mb-3">&copy; @DateTime.Now.Year - <strong>DEPO</strong></p>
+            <div>
+                <a href="https://instagram.com/yahyalebitt" class="text-white me-3" target="_blank">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/yahyalebit/" class="text-white me-3" target="_blank">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="https://github.com/yahyalebit" class="text-white" target="_blank">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        function toggleMenu(menuId) {
+            var menu = document.getElementById(menuId);
+            var isOpen = menu.style.display === "block";
+
+            // Önce tüm menüleri kapatalım
+            document.querySelectorAll('.menu-container').forEach(function (el) {
+                el.style.display = "none";
+            });
+
+            // Eğer önce kapalıysa aç, açıksa kapat
+            if (!isOpen) {
+                menu.style.display = "block";
+            }
+        }
+
+        // Sayfaya tıklandığında menüyü kapat
+        document.addEventListener("click", function (event) {
+            if (!event.target.matches('.nav-link')) {
+                document.querySelectorAll('.menu-container').forEach(function (el) {
+                    el.style.display = "none";
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

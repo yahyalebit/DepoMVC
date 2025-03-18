@@ -1,0 +1,6 @@
+C:\Users\meteh\Documents\GitHub\SoftIToProjects\SoftIToLessons\YüzyüzeEğitim\DepoMvcKatmanlıMimariProject\DepoMvcKatmanlıMimariProject\Entity\bin\Debug\Entity.dll
+C:\Users\meteh\Documents\GitHub\SoftIToProjects\SoftIToLessons\YüzyüzeEğitim\DepoMvcKatmanlıMimariProject\DepoMvcKatmanlıMimariProject\Entity\bin\Debug\Entity.pdb
+C:\Users\meteh\Documents\GitHub\SoftIToProjects\SoftIToLessons\YüzyüzeEğitim\DepoMvcKatmanlıMimariProject\DepoMvcKatmanlıMimariProject\Entity\obj\Debug\Entity.csproj.AssemblyReference.cache
+C:\Users\meteh\Documents\GitHub\SoftIToProjects\SoftIToLessons\YüzyüzeEğitim\DepoMvcKatmanlıMimariProject\DepoMvcKatmanlıMimariProject\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+C:\Users\meteh\Documents\GitHub\SoftIToProjects\SoftIToLessons\YüzyüzeEğitim\DepoMvcKatmanlıMimariProject\DepoMvcKatmanlıMimariProject\Entity\obj\Debug\Entity.dll
+C:\Users\meteh\Documents\GitHub\SoftIToProjects\SoftIToLessons\YüzyüzeEğitim\DepoMvcKatmanlıMimariProject\DepoMvcKatmanlıMimariProject\Entity\obj\Debug\Entity.pdb

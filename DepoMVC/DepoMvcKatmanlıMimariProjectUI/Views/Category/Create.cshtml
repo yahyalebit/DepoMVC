@@ -1,0 +1,43 @@
+﻿@model Entity.Concrete.Category
+
+@{
+    ViewBag.Title = "Yeni Kategori Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center mb-4">Yeni Kategori Ekle</h2>
+
+<div class="card shadow-lg p-4">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.CategoryName, new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", placeholder = "Kategori adını girin" } })
+                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.CategoryDescription, new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.CategoryDescription, new { @class = "form-control", placeholder = "Kategori açıklamasını girin", rows = "3" })
+                @Html.ValidationMessageFor(model => model.CategoryDescription, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(model => model.CategoryStatus, new { @class = "form-check-input" })
+                @Html.LabelFor(model => model.CategoryStatus, new { @class = "form-check-label fw-bold" })
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success px-4">Kaydet</button>
+                <a href="@Url.Action("Index")" class="btn btn-outline-secondary px-4">Geri Dön</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
